@@ -22,16 +22,18 @@ const suffixes = [
     [3, "thousand"]
 ];
 
-function toNumberNotationWithWords(number, decimalsToKeep = -1) {
+function toNumberNotationWithWords(input, decimalsToKeep = -1) {
+    let number = Number(input)
+    if (isNaN(number)) return input
     for (let [power, suffix] of suffixes) {
         if (number >= Math.pow(10, power)) {
             let result = number / Math.pow(10, power);
 
             return decimalsToKeep >= 0
-                ? result.toFixed(decimalsToKeep) + {suffix}
-                : result + suffix;
+                ? result.toFixed(decimalsToKeep) + " " + suffix
+                : result + " " + suffix;
         }
     }
     
-    return input
+    return number
 }
