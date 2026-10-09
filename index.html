@@ -11,13 +11,13 @@
     <body>
         <h1>Number Notation With Words</h1>
         <label for="input">Number input:&nbsp;</label>
-        <input type="number" id="input" min="0"><br>
+        <input type="number" id="numI" min="0"><br>
         <label for="decimalsToKeepI">Decimals to keep (when is -1, then all decimals are kept):&nbsp;</label>
         <input type="number" id="decimalsToKeepI" min="-1" max="100"><br>
         <input type="button" value="Convert" onclick="clicked()">
         <p id="output"></p>
         <script>
-            const input = document.getElementById("input");
+            const numI = document.getElementById("numI");
             const decimalsToKeepI = document.getElementById("decimalsToKeepI");
             const output = document.getElementById("output");
 
@@ -45,14 +45,16 @@
                 [3, "thousand"]
             ];
 
-            function toNumberNotationWithWords(number, decimalsToKeep = -1) {
+            function toNumberNotationWithWords(input, decimalsToKeep = -1) {
+                let number = Number(input)
+                if (isNaN(number)) return input
                 for (let [power, suffix] of suffixes) {
                     if (number >= Math.pow(10, power)) {
                         let result = number / Math.pow(10, power);
 
                         return decimalsToKeep >= 0
-                            ? result.toFixed(decimalsToKeep) + {suffix}
-                            : result + suffix;
+                            ? result.toFixed(decimalsToKeep) + " " + suffix
+                            : result + " " + suffix;
                     }
                 }
                 
@@ -61,19 +63,19 @@
 
             function clicked() {
                 if (input.value != "" && decimalsToKeepI.value != "") {
-                    output.textContent = toNumberNotationWithWords(input.value, decimalsToKeepI.value)
+                    output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             }
 
             input.addEventListener("keydown", e => {
                 if (e.key == "Enter" && input.value != "" && decimalsToKeepI.value != "") {
-                    output.textContent = toNumberNotationWithWords(input.value, decimalsToKeepI.value)
+                    output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             })
 
             decimalsToKeepI.addEventListener("keydown", e => {
                 if (e.key == "Enter" && input.value != "" && decimalsToKeepI.value != "") {
-                    output.textContent = toNumberNotationWithWords(input.value, decimalsToKeepI.value)
+                    output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             })
         </script>
