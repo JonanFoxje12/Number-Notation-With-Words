@@ -33,5 +33,5 @@ function toNumberNotationWithWords(number, decimalsToKeep = -1) {
         }
     }
     
-    return number
+    return input
 }
