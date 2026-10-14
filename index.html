@@ -73,19 +73,19 @@
             }
 
             function clicked() {
-                if (input.value != "" && decimalsToKeepI.value != "") {
+                if (numI.value != "" && decimalsToKeepI.value != "") {
                     output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             }
 
-            input.addEventListener("keydown", e => {
-                if (e.key == "Enter" && input.value != "" && decimalsToKeepI.value != "") {
+            numI.addEventListener("keydown", e => {
+                if (e.key == "Enter" && numI.value != "" && decimalsToKeepI.value != "") {
                     output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             })
 
             decimalsToKeepI.addEventListener("keydown", e => {
-                if (e.key == "Enter" && input.value != "" && decimalsToKeepI.value != "") {
+                if (e.key == "Enter" && numI.value != "" && decimalsToKeepI.value != "") {
                     output.textContent = toNumberNotationWithWords(numI.value, decimalsToKeepI.value)
                 }
             })
